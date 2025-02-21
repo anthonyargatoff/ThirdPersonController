@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float jumpHeight;
   [SerializeField] private float dashSpeed;
   private Rigidbody rb;
+  [SerializeField] private CinemachineCamera freeLookCamera;
   void Start()
   {
     inputManager.OnMove.AddListener(MovePlayer);
@@ -16,6 +18,12 @@ public class PlayerController : MonoBehaviour
   private void MovePlayer(Vector2 direction)
   {
     Vector3 moveDirection = new(direction.x, 0f, direction.y);
-    rb.AddForce(speed * moveDirection);
+    rb.AddRelativeForce(speed * moveDirection);
+  }
+
+  void Update()
+  {
+    transform.forward = freeLookCamera.transform.forward;
+    transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
   }
 }
