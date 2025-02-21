@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1340368443}
   speed: 2
-  jumpHeight: 1
+  jumpHeight: 300
   dashSpeed: 1
   freeLookCamera: {fileID: 1403180961}
 --- !u!54 &1561895519

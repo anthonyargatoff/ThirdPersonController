@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
   void Start()
   {
     inputManager.OnMove.AddListener(MovePlayer);
+    inputManager.OnSpacePressed.AddListener(Jump);
     rb = GetComponent<Rigidbody>();
   }
 
@@ -19,6 +20,11 @@ public class PlayerController : MonoBehaviour
   {
     Vector3 moveDirection = new(direction.x, 0f, direction.y);
     rb.AddRelativeForce(speed * moveDirection);
+  }
+
+  private void Jump()
+  {
+    rb.AddForce(new Vector3(0, jumpHeight, 0));
   }
 
   void Update()
