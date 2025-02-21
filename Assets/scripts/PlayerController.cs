@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
   {
     inputManager.OnMove.AddListener(MovePlayer);
     inputManager.OnSpacePressed.AddListener(Jump);
+    inputManager.OnShiftPressed.AddListener(Dash);
     rb = GetComponent<Rigidbody>();
   }
 
@@ -31,6 +32,12 @@ public class PlayerController : MonoBehaviour
     }
     rb.AddForce(new Vector3(0, jumpHeight, 0));
     jumpStatus += 1;
+  }
+
+  private void Dash()
+  {
+    rb.AddRelativeForce(new Vector3(0, 0, dashSpeed));
+    Debug.Log("Dashing");
   }
 
   void Update()
